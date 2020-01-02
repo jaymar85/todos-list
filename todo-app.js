@@ -15,9 +15,22 @@ const todos = [{
     completed: true
 }]
 
+const filters = {
+    searchText: ''
+}
+
+const renderText = function(todos, filters) {
+    const findTodo = todos.filter(function(todo) {
+        return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+    })
+
+
+}
+
 const incompleteTodos = todos.filter(function (todo) {
     return !todo.completed
 })
+
 const sentence = document.createElement('h4')
 sentence.textContent = `You have ${incompleteTodos.length} todos left.`
 document.querySelector('body').appendChild(sentence)
@@ -28,3 +41,12 @@ todos.forEach(function (todo) {
     document.querySelector('body').appendChild(p)
 })
 
+// Listen for new todo creation
+document.querySelector('#add-todo').addEventListener('submit', function(e) {
+    e.preventDefault()
+
+})
+
+document.querySelector('#search-text').addEventListener('input', function(e) {
+    console.log(e.target.value)
+})
